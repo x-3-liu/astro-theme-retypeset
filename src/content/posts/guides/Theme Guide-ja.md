@@ -76,7 +76,7 @@ global: {
   locale: 'zh' // zh, zh-tw, ja, en, es, ru
   // その他の言語
   // '/ja/' '/en/' などの多言語パスを生成
-  // デフォルト言語を重複して入力しないでください
+  // デフォルト言語を重複して入力しないでください、空の配列 [] も可能です
   moreLocales: ['zh-tw', 'ja', 'en', 'es', 'ru'] // ['zh', 'zh-tw', 'ja', 'en', 'es', 'ru']
   // フォントスタイル
   fontStyle: 'sans' // sans, serif
@@ -231,7 +231,7 @@ abbrlink: theme-guide
 
 #### toc
 
-目次を有効にします。この機能はまだ実装されていません。
+目次を自動生成するかどうか。デフォルトは true。
 
 #### lang
 
@@ -243,16 +243,15 @@ abbrlink: theme-guide
 # moreLocales: ['es', 'ru']
 
 # lang: ''
-src/content/posts/apple.md    -> example.com/posts/apple/
-                              -> example.com/es/posts/apple/
-                              -> example.com/ru/posts/apple/
+src/content/posts/apple.md   -> example.com/posts/apple/
+                             -> example.com/es/posts/apple/
+                             -> example.com/ru/posts/apple/
 # lang: en
-src/content/posts/apple.md    -> example.com/posts/apple/
+src/content/posts/apple.md   -> example.com/posts/apple/
 # lang: es
-src/content/posts/banana.md   -> example.com/es/posts/banana/
+src/content/posts/apple.md   -> example.com/es/posts/apple/
 # lang: ru
-src/content/posts/orange.md   -> example.com/ru/posts/orange/
-
+src/content/posts/apple.md   -> example.com/ru/posts/apple/
 ```
 
 #### abbrlink

@@ -5,11 +5,7 @@
 }
 
 html {
-  --at-apply: 'bg-background c-secondary antialiased scrollbar-hidden';
-}
-
-html::-webkit-scrollbar {
-  --at-apply: 'hidden';
+  --at-apply: 'bg-background c-secondary antialiased';
 }
 
 body {

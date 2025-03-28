@@ -2,6 +2,7 @@
 import { OverlayScrollbars } from 'overlayscrollbars'
 
 function setupScrollbar() {
+  // Add scrollbar to body
   const bodyElement = document.body
   if (!bodyElement.hasAttribute('data-scrollbar-initialized')) {
     OverlayScrollbars({
@@ -20,17 +21,15 @@ function setupScrollbar() {
     bodyElement.setAttribute('data-scrollbar-initialized', 'true')
   }
 
+  // Add scrollbar to code blocks
   const preElements = document.querySelectorAll('pre')
   preElements.forEach((pre) => {
     if (!pre.hasAttribute('data-scrollbar-initialized')) {
       OverlayScrollbars({
         target: pre,
-        cancel: {
-          nativeScrollbarsOverlaid: true,
-        },
       }, {
         scrollbars: {
-          theme: 'scrollbar-code',
+          theme: 'scrollbar-widget',
           autoHide: 'leave',
           autoHideDelay: 500,
         },
@@ -39,6 +38,22 @@ function setupScrollbar() {
       pre.setAttribute('data-scrollbar-initialized', 'true')
     }
   })
+
+  // Add scrollbar to TOC content
+  const tocElement = document.getElementById('toc-content')
+  if (tocElement && !tocElement.hasAttribute('data-scrollbar-initialized')) {
+    OverlayScrollbars({
+      target: tocElement,
+    }, {
+      scrollbars: {
+        theme: 'scrollbar-widget',
+        autoHide: 'leave',
+        autoHideDelay: 500,
+      },
+    })
+
+    tocElement.setAttribute('data-scrollbar-initialized', 'true')
+  }
 }
 
 setupScrollbar()
@@ -60,11 +75,11 @@ document.addEventListener('astro:after-swap', setupScrollbar)
   --os-handle-bg: oklch(var(--un-preset-theme-colors-secondary) / 0.25);
   --os-handle-bg-hover: oklch(var(--un-preset-theme-colors-secondary) / 0.40);
   --os-handle-bg-active: oklch(var(--un-preset-theme-colors-secondary) / 0.40);
-  --os-handle-max-size: 60%;
+  --os-handle-max-size: 80%;
   --os-handle-min-size: 12%;
 }
 
-.scrollbar-code {
+.scrollbar-widget {
   --os-size: 0.6rem;
   --os-padding-perpendicular: 0.1rem;
   --os-padding-axis: 0.2rem;
@@ -76,13 +91,6 @@ document.addEventListener('astro:after-swap', setupScrollbar)
   --os-handle-bg: oklch(var(--un-preset-theme-colors-secondary) / 0.20);
   --os-handle-bg-hover: oklch(var(--un-preset-theme-colors-secondary) / 0.35);
   --os-handle-bg-active: oklch(var(--un-preset-theme-colors-secondary) / 0.35);
-  --os-handle-max-size: 60%;
   --os-handle-min-size: 12%;
-}
-
-@media (max-width: 1023px) {
-  .os-scrollbar {
-    display: none !important;
-  }
 }
 </style>
